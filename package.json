@@ -4,7 +4,7 @@
   "description": "REST API for monitoring app - Express JS MySQL Sequelize",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -21,5 +21,14 @@
   "bugs": {
     "url": "https://github.com/or-abdillh/monitoring-api/issues"
   },
-  "homepage": "https://github.com/or-abdillh/monitoring-api#readme"
+  "homepage": "https://github.com/or-abdillh/monitoring-api#readme",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "mysql2": "^2.3.3",
+    "nodemon": "^2.0.15",
+    "sequelize": "^6.19.0"
+  }
 }
