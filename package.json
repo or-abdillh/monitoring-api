@@ -1,0 +1,25 @@
+{
+  "name": "monitoring-api",
+  "version": "1.0.0",
+  "description": "REST API for monitoring app - Express JS MySQL Sequelize",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/or-abdillh/monitoring-api.git"
+  },
+  "keywords": [
+    "REST-API",
+    "expressjs",
+    "mysql",
+    "sequelize"
+  ],
+  "author": "Oka R. Abdillah",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/or-abdillh/monitoring-api/issues"
+  },
+  "homepage": "https://github.com/or-abdillh/monitoring-api#readme"
+}
