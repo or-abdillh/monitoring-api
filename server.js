@@ -11,6 +11,9 @@ app.use( bodyParser.urlencoded({ extended: true }) )
 app.use( bodyParser.json() )
 app.use( cors() )
 
+// Public dir
+app.use('/public', express.static(__dirname + '/public'))
+
 // Create server
 const PORT = process.env.PORT || 8080
 
