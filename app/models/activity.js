@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      console.log(models)
     }
   }
   activity.init({
@@ -34,6 +35,7 @@ module.exports = (sequelize, DataTypes) => {
     createdAt: true,
     updatedAt: true
   })
-
+  
+  //activity.associate(sequelize.models)
   return activity
 }

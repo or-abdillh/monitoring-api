@@ -4,6 +4,7 @@
 const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-parser')
+const uploader = require('express-fileupload')
 
 // Router
 const router = require('./router')
@@ -13,7 +14,9 @@ const app = express()
 app.use( bodyParser.urlencoded({ extended: true }) )
 app.use( bodyParser.json() )
 app.use( cors() )
+app.use( uploader() )
 
+//Routes
 router(app)
 
 // Public dir

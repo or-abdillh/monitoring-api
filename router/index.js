@@ -9,4 +9,5 @@ module.exports = app => {
 
 	app.route('/activity')
 		.get( activity.index ) // Get all activities
+		.post( activity.create ) // Create new activity include image upload
 }

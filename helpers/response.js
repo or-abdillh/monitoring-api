@@ -16,11 +16,14 @@ const success = (data, res) => res.status(200).send( createJSON(200, 'Success', 
 
 const notFound = (data, res) => res.status(404).send( createJSON(404, 'Not Found', data) )
 
-const internalServerError = (err, res) => res.status(501).send( createJSON(501, err.name, err.errors[0].message) )
+const internalServerError = (err, res) => res.status(501).send( createJSON(501, 'Something error', err) )
+
+const forbiden = (msg, res) => res.status(403).send( createJSON(403, 'Forbidden', msg) )
 
 //Export
 module.exports = {
     success,
     notFound,
-    internalServerError
+    internalServerError,
+    forbiden
 }
