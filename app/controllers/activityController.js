@@ -1,5 +1,6 @@
 'use strict'
 
+const fs = require('fs')
 const sequelize = require('../../config/sequelize.js')
 const { DataTypes } = require('sequelize')
 const Activity = require('../models/activity.js')(sequelize, DataTypes)
@@ -27,6 +28,13 @@ const ActivityController = {
 		})
 	},
 
+	destroyFileUpload (path, res, callback) {
+		fs.unlink(path, err => {
+			if (!err) callback()
+			else response.internalServerError(err, res)
+		})
+	},
+
 	create (req, res) {
 		// if req.files is empty
 		if (req.files === null) response.forbiden('property leaderPicture cannot empty', res)
@@ -46,6 +54,28 @@ const ActivityController = {
 				response.success('Success for create new activity', res)
 			} catch(err) { response.internalServerError(err, res) }	
 		})	
+	},
+
+	async destroy (req, res) {
+		//Get 'id'
+		const { id } = req.body
+		
+		//Get leaderPicture file name
+		const leaderPicture = await Activity.findOne({ where: { id }, attributes: ['leaderPicture'] })
+
+		if (leaderPicture === null) response.notFound('Leader picture not found for id ' + id, res )
+		else {
+			// Create full path from image file
+			const path = `public/${ leaderPicture.dataValues.leaderPicture }`
+			
+			//remove file and destroy record
+			ActivityController.destroyFileUpload(path, res, async () => {
+				try {
+					await Activity.destroy({ where: { id } })
+					response.success('Success destroy data for id ' + id, res)
+				} catch(err) { response.internalServerError(err, res) }
+			})
+		}
 	}
 }
 
