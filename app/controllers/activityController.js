@@ -76,6 +76,29 @@ const ActivityController = {
 				} catch(err) { response.internalServerError(err, res) }
 			})
 		}
+	},
+
+	async update (req, res) {
+		// Get form 
+		const { id, title, client, startAt, finishAt, leaderName, leaderEmail, progress } = req.body
+
+		// If try to change leaderPicture	
+		if ( req.files === null ) {
+			try {
+				await Activity.update({ title, client, startAt, finishAt, leaderName, leaderEmail, progress }, { where: { id } })
+				response.success('Success update data for id ' + id, res)
+			} catch(err) { response.internalServerError(err, res) }
+		} else { 
+			// Reupload leaderPicture
+			const { leaderPicture } = req.files
+			ActivityController.upload(leaderPicture, res, async fileName => {
+				// Update record
+				try {
+					await Activity.update({ title, client, startAt, finishAt, leaderName, leaderEmail, progress, leaderPicture: fileName }, { where: { id } })
+					response.success('Success to update data and success to upload file for id ' + id, res)
+				} catch(err) { response.internalServerError(err, res) }
+			})
+		}
 	}
 }
 
