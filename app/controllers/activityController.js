@@ -99,6 +99,21 @@ const ActivityController = {
 				} catch(err) { response.internalServerError(err, res) }
 			})
 		}
+	},
+
+	async search (req, res) {
+		// Get the 'id'
+		const { id } = req.params
+		
+		// Get the activity by id
+		try {
+			const result = await Activity.findOne({ where: { id } })
+			
+			// return null or not found
+			if (result === null) response.notFound('Data not found for id ' + id, res)
+			else response.success(result, res)
+
+		} catch(err) { response.internalServerError(err, res) }
 	}
 }
 

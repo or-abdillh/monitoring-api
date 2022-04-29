@@ -12,4 +12,6 @@ module.exports = app => {
 		.post( activity.create ) // Create new activity include image upload
 		.delete( activity.destroy ) // remove activity ffrom database
 		.put( activity.update ) // Update data activity
+
+	app.route('/activity/:id').get( activity.search )
 }
